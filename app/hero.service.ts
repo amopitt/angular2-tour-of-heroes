@@ -17,7 +17,16 @@ export class HeroService {
 
   getHero(id: number) {
     return Promise.resolve(HEROES).then(
-      heroes => heroes.filter(hero => hero.id === id)[0]
+      heroes => {
+        var filtered = heroes.filter(hero => hero.id === id);
+        
+        if (filtered && filtered.length > 0)
+          return heroes.filter(hero => hero.id === id)[0]
+        else
+          {
+            return new Hero(-1, "Boombastic");
+          }
+      }
     );
   }
 }
